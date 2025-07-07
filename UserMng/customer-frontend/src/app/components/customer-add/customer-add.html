@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Dodaj korisnika</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label for="firstName">Ime:</label>
+    <input id="firstName" formControlName="firstName" type="text" />
+
+    <label for="lastName">Prezime:</label>
+    <input id="lastName" formControlName="lastName" type="text" />
+
+    <label for="tel">Telefon:</label>
+    <input id="tel" formControlName="tel" type="text" />
+
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" type="email" />
+    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error">
+      Unesite validan email.
+    </div>
+
+    <label for="details">Detalji:</label>
+    <textarea id="details" formControlName="details"></textarea>
+
+    <button type="submit" [disabled]="form.invalid">Sačuvaj</button>
+  </form>
+</div>

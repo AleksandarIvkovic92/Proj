@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="header">
+    <h2>Lista korisnika</h2>
+    <button class="btn btn-add" (click)="goToAdd()">+ Novi korisnik</button>
+  </div>
+
+  <div class="search-wrapper">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Pretraži po imenu, prezimenu, emailu..."
+      class="search-input"
+    />
+  </div>
+
+  <table class="styled-table" *ngIf="filteredCustomers.length">
+    <thead>
+    <tr>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Telefon</th>
+      <th>Email</th>
+      <th>Detalji</th>
+      <th class="text-center">Akcije</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let customer of filteredCustomers">
+      <td>{{ customer.firstName }}</td>
+      <td>{{ customer.lastName }}</td>
+      <td>{{ customer.tel }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.details }}</td>
+      <td class="action-cell">
+        <div class="action-buttons">
+          <button class="btn btn-edit" (click)="onEdit(customer._id!)">✏️</button>
+          <button class="btn btn-delete" (click)="deleteCustomer(customer._id!)">🗑️</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!filteredCustomers.length" class="message">
+    Nema korisnika koji odgovaraju pretrazi.
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="form-wrapper">
+  <h2>Izmeni korisnika</h2>
+
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">Ime:</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Prezime:</label>
+      <input id="lastName" formControlName="lastName" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="tel">Telefon:</label>
+      <input id="tel" formControlName="tel" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" />
+      <div *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched" class="error">
+        Unesite validan email.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="details">Detalji:</label>
+      <textarea id="details" formControlName="details"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="customerForm.invalid">Sačuvaj</button>
+  </form>
+
+  <div *ngIf="loading" class="info">Učitavanje...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>
